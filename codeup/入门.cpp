@@ -60,3 +60,78 @@ int main(){
     }
     return 0;
 }
+
+// 2.7 C语言10.16
+#include <cstdio>
+#include <cstring>
+
+void exchange(int *p){
+    int *q = p, t;
+    for (int i = 0; i < 10; i++)
+        if (p[i] < *q)
+            q = &p[i];
+    t = p[0];
+    p[0] = *q;
+    *q = t;
+    for (int i = 0; i < 10; i++)
+        if (p[i] > *q)
+            q = &p[i];
+    t = p[9];
+    p[9] = *q;
+    *q = t;
+}
+
+void input(int *p){
+    for (int i = 0; i < 10; i++)
+        scanf("%d", &p[i]);
+}
+
+void output(int *p){
+    for (int i = 0; i < 10; i++)
+        printf("%d ", p[i]);
+    printf("\n");
+}
+int main(){
+    int num[10];
+    input(num);
+    exchange(num);
+    output(num);
+    return 0;
+}
+
+// 2.8 C语言11.4
+#include <cstdio>
+#include <cstring>
+
+struct person{
+    int num;
+    char name[10];
+    char sex;
+    char job;
+    union {
+        int Class;
+        char position[10];
+    }category;
+};
+
+int main(){
+    person ps[20];
+    int n;
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++){
+        scanf("%d %s %c %c", &ps[i].num, ps[i].name, &ps[i].sex, &ps[i].job);
+        if(ps[i].job=='s')
+            scanf("%d", &ps[i].category.Class);
+        if(ps[i].job=='t')
+            scanf("%s", ps[i].category.position);
+    }
+
+    for (int i = 0; i < n; i++) {
+        if(ps[i].job=='s')
+            printf("%d %s %c %c %d\n", ps[i].num, ps[i].name, ps[i].sex, ps[i].job, ps[i].category.Class);
+        if(ps[i].job=='t')
+            printf("%d %s %c %c %s\n", ps[i].num, ps[i].name, ps[i].sex, ps[i].job, ps[i].category.position);        
+    }
+
+    return 0;
+}
