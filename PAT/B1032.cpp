@@ -1,3 +1,4 @@
+/* 挖掘机技术哪家强 */
 // schId 从 1 开始编号，因此数组大小应大于 99999，循环遍历时也应做出相应的改变
 #include<cstdio>
 const int MAXSIZE = 100010;
